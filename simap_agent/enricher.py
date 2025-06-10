@@ -172,6 +172,7 @@ def enrich(detail: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
         data["awardCriteria"] = award
         data["awardCriteriaSummary"] = summarize_criteria(award, "Zuschlagskriterien")
 
+
     # Build missing_info list only from fields we expect in Slack.
     missing: List[str] = []
     # project-level checks
