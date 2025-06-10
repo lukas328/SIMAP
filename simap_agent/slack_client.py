@@ -55,8 +55,13 @@ def format_slack_blocks(proj: Dict[str, Any]) -> List[Dict[str, Any]]:
         f"\n:mag: *Fehlende Infos:* {missing_str}\n"
     )
 
+    qual_summary = proj.get("qualificationCriteriaSummary")
     qual = proj.get("qualificationCriteria") or []
-    if qual:
+    qual_in_docs = str(proj.get("qualificationCriteriaInDocuments", "")).lower() == "yes" or proj.get("qualificationCriteriaInDocuments") is True
+    qual_as_pdf = proj.get("qualificationCriteriaAsPDF")
+    if qual_summary:
+        text += f":bookmark_tabs: *Eignungskriterien:*\n{qual_summary}\n"
+    elif qual:
         text += ":bookmark_tabs: *Eignungskriterien:*"
         for c in qual:
             title = (c.get("title") or {}).get("de")
@@ -67,9 +72,19 @@ def format_slack_blocks(proj: Dict[str, Any]) -> List[Dict[str, Any]]:
             if desc:
                 text += f" – {desc}"
         text += "\n"
+    elif qual_in_docs:
+        if qual_as_pdf:
+            text += ":bookmark_tabs: Kriterien sind als pdf hinterlegt\n"
+        else:
+            text += ":bookmark_tabs: Kriterien sind in den Dokumenten hinterlegt\n"
 
+    award_summary = proj.get("awardCriteriaSummary")
     award = proj.get("awardCriteria") or []
-    if award:
+    award_in_docs = str(proj.get("awardCriteriaInDocuments", "")).lower() == "yes" or proj.get("awardCriteriaInDocuments") is True
+    award_as_pdf = proj.get("awardCriteriaAsPDF")
+    if award_summary:
+        text += f":trophy: *Zuschlagskriterien:*\n{award_summary}\n"
+    elif award:
         text += ":trophy: *Zuschlagskriterien:*"
         for a in award:
             title = (a.get("title") or {}).get("de")
@@ -80,6 +95,11 @@ def format_slack_blocks(proj: Dict[str, Any]) -> List[Dict[str, Any]]:
             if weight is not None:
                 text += f" – Gewichtung {weight}%"
         text += "\n"
+    elif award_in_docs:
+        if award_as_pdf:
+            text += ":trophy: Kriterien sind als pdf hinterlegt\n"
+        else:
+            text += ":trophy: Kriterien sind in den Dokumenten hinterlegt\n"
 
     blocks = [
         {"type": "divider"},

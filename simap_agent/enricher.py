@@ -10,6 +10,25 @@ logger = logging.getLogger(__name__)
 
 openai_client = OpenAI(api_key=config.OPENAI_API_KEY)
 
+
+def summarize_criteria(criteria: List[Dict[str, Any]], name: str) -> str:
+    """Return short German bullet summary for criteria via OpenAI."""
+    if not criteria:
+        return ""
+    logger.debug("Summarizing %s via OpenAI", name)
+    resp = openai_client.chat.completions.create(
+        model="gpt-4.1-mini",
+        messages=[
+            {
+                "role": "system",
+                "content": f"Fasse die folgenden {name} in 5 Stichpunkten auf deutsch zusammen.",
+            },
+            {"role": "user", "content": json.dumps(criteria, ensure_ascii=False, indent=2)},
+        ],
+        temperature=0.2,
+    )
+    return resp.choices[0].message.content.strip()
+
 ENRICH_FUNC = [
     {
         "name": "enrich_project",
@@ -118,15 +137,29 @@ def enrich(detail: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
     if not qual:
         for lot in detail.get("lots", []):
             qual.extend(lot.get("qualificationCriteria") or [])
+    qual_in_docs = detail.get("qualificationCriteriaInDocuments")
+    qual_as_pdf = detail.get("qualificationCriteriaAsPDF")
+    if qual_in_docs is not None:
+        data["qualificationCriteriaInDocuments"] = qual_in_docs
+    if qual_as_pdf is not None:
+        data["qualificationCriteriaAsPDF"] = qual_as_pdf
     if qual:
         data["qualificationCriteria"] = qual
+        data["qualificationCriteriaSummary"] = summarize_criteria(qual, "Eignungskriterien")
 
     award = detail.get("awardCriteria") or []
     if not award:
         for lot in detail.get("lots", []):
             award.extend(lot.get("awardCriteria") or [])
+    award_in_docs = detail.get("awardCriteriaInDocuments")
+    award_as_pdf = detail.get("awardCriteriaAsPDF")
+    if award_in_docs is not None:
+        data["awardCriteriaInDocuments"] = award_in_docs
+    if award_as_pdf is not None:
+        data["awardCriteriaAsPDF"] = award_as_pdf
     if award:
         data["awardCriteria"] = award
+        data["awardCriteriaSummary"] = summarize_criteria(award, "Zuschlagskriterien")
 
     return data
 
