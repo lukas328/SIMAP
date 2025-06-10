@@ -1,0 +1,44 @@
+[
+  {
+    "summary": "Die Ausschreibung betrifft die Entwicklung und Bereitstellung einer Datenaustauschplattform (DAP) auf der On-Premise-Infrastruktur des Amt für Informatik und Organisation (AIO) in Solothurn. Die Plattform soll verschiedene Zugriffsarten unterstützen und vier spezifische Anwendungsfälle für den sicheren Austausch von Falldokumentationen abdecken. Der Auftrag umfasst IT-Dienstleistungen wie Beratung, Softwareentwicklung und Support mit einem Vertragszeitraum von 2027 bis 2032.",
+    "project": {
+      "title_de": "Datenaustauschplattform DAP",
+      "customer": "Amt für Informatik und Organisation",
+      "location": "Solothurn",
+      "publicationDate": "2025-05-28",
+      "offerDeadline": "2025-08-15T23:59:00+02:00",
+      "contract_start": "2027-06-30",
+      "cpvCode": {
+        "code": "72000000",
+        "label_de": "IT-Dienste: Beratung, Software-Entwicklung, Internet und Hilfestellung"
+      },
+      "qna_deadline": "2025-06-20",
+      "projectNumber": "15769",
+      "projectId": "44ba2363-15fb-41dd-806d-fea7b73a3b62"
+    },
+    "team": "Engineering",
+    "apply_score": 8,
+    "missing_info": []
+  },
+  {
+    "summary": "Die Ausschreibung betrifft die Beschaffung einer SaaS Omnichannel-Lösung zur zentralen Verwaltung von Kundenkontaktkanälen für den öffentlichen Verkehr in Zürich. Ziel ist die Ergänzung einer bestehenden CRM-Lösung mit einem Customer Relationship Hub für mindestens 80 Nutzer. Der Vertrag läuft von 2026 bis 2028 mit Verlängerungsoptionen und umfasst IT-Dienstleistungen im Bereich Softwareentwicklung und Beratung.",
+    "project": {
+      "title_de": "3870 NUCLEO - Omnichannel-Lösung für das CVC",
+      "customer": "Verkehrsbetriebe Zürich (VBZ)",
+      "location": "Zürich",
+      "publicationDate": "2025-05-27",
+      "offerDeadline": "2025-07-11T17:00:00+02:00",
+      "contract_start": "2026-01-01",
+      "cpvCode": {
+        "code": "72000000",
+        "label_de": "IT-Dienste: Beratung, Software-Entwicklung, Internet und Hilfestellung"
+      },
+      "qna_deadline": "2025-06-25",
+      "projectNumber": "16842",
+      "projectId": "fad8b09c-5a75-4f17-97fb-98783edcbdaf"
+    },
+    "team": "Engineering",
+    "apply_score": 8,
+    "missing_info": []
+  }
+]
