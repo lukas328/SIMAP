@@ -32,7 +32,7 @@ def fetch_project_summaries(cpv: List[str], lang: str = "de", max_pages: int = 1
             "lang": lang,
             "processTypes": "open",
             "cpvCodes": cpv,
-            "newestPublicationFrom": (datetime.today() - timedelta(days=1)).strftime("%Y-%m-%d"),
+            "newestPublicationFrom": (datetime.today() - timedelta(days=10)).strftime("%Y-%m-%d"),
         }
         if cursor:
             params["lastItem"] = cursor

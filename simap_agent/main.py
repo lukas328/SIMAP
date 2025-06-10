@@ -98,7 +98,7 @@ def main() -> None:
             text += "\n"
 
         text += "––––––––––––––––––––––––––––––––––––––––––––––––––"
-        print(text)
+        logger.info(text)
         #post_message(text)
 
     with open("enriched_projects.json", "w", encoding="utf-8") as f:
