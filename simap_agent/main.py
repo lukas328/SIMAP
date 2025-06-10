@@ -1,5 +1,10 @@
 import json
 import logging
+import os
+import sys
+
+# Ensure package imports work when executed directly
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 from simap_agent import config
 from simap_agent.simap_client import fetch_project_summaries, fetch_project_details
