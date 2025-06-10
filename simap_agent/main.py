@@ -9,7 +9,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 from simap_agent import config
 from simap_agent.simap_client import fetch_project_summaries, fetch_project_details
 from simap_agent.enricher import enrich_batch
-from simap_agent.slack_client import post_message
+from simap_agent.slack_client import format_slack_blocks, post_blocks
 
 logging.basicConfig(
     level=logging.DEBUG,
@@ -70,59 +70,11 @@ def main() -> None:
     logger.info("Enriching projects via OpenAI")
     enriched = enrich_batch(details, COMPANY_PROFILE)
     for det, enrich_data in zip(details, enriched):
-        title = det.get("project-info", {}).get("title", {}).get("de") or det.get("project-info", {}).get("title", {}).get("fr", "–")
-        score = enrich_data.get("apply_score")
-        summary = enrich_data.get("summary")
-        text = (
-            "––––––––––––––––––––––––––––––––––––––––––––––––––\n"
-            f":rocket: *Team:* {enrich_data.get('team')}    *# {det.get('projectNumber')}*\n"
-            f":file_folder: *Projekt:* {title}\n"
-            f":star: *Apply Score:* *{score}*\n\n"
-            f":page_facing_up: *Zusammenfassung:*\n>{summary}\n\n"
-            f":pushpin: *CPV:* `{(det.get('base') or {}).get('cpvCode', {}).get('code')}`\n"
-        )
-
-        proj = enrich_data.get("project", {})
-        if proj.get("projectId"):
-            text += f":id: *Project ID:* {proj['projectId']}\n"
-        if proj.get("publicationDate"):
-            text += f":spiral_calendar_pad: *Publikation:* {proj['publicationDate']}\n"
-        if proj.get("offerDeadline"):
-            text += f":hourglass_flowing_sand: *Angebotsfrist:* {proj['offerDeadline']}\n"
-        if proj.get("contract_start"):
-            text += f":date: *Vertragsbeginn:* {proj['contract_start']}\n"
-
-        qual = enrich_data.get("qualificationCriteria") or []
-        if qual:
-            text += ":bookmark_tabs: *Eignungskriterien:*"
-            for c in qual:
-                title = (c.get("title") or {}).get("de")
-                if not title:
-                    continue
-                desc = (c.get("description") or {}).get("de") or ""
-                text += f"\n• *{title}*"
-                if desc:
-                    text += f" – {desc}"
-            text += "\n\n"
-
-        award = enrich_data.get("awardCriteria") or []
-        if award:
-            text += ":trophy: *Zuschlagskriterien:*"
-            for a in award:
-                title = (a.get("title") or {}).get("de")
-                if not title:
-                    continue
-                weight = a.get("weighting")
-                text += f"\n• *{title}*"
-                if weight is not None:
-                    text += f" – Gewichtung {weight}%"
-            text += "\n"
-
-        text += "––––––––––––––––––––––––––––––––––––––––––––––––––"
-        logger.info(text)
         logger.info("Posting project #%s to Slack", det.get("projectNumber"))
+        blocks = format_slack_blocks(enrich_data)
+        logger.debug("Slack blocks: %s", blocks)
         try:
-            post_message(text)
+            post_blocks(blocks)
             logger.info("Slack post succeeded")
         except Exception:
             logger.exception("Failed to post message to Slack")
