@@ -1,1 +1,79 @@
-[]
+[
+  {
+    "summary": "Die Stadt Zürich, Organisation und Informatik (OIZ), schreibt eine offene Ausschreibung für Red Hat Subscriptions inklusive Wartung und Support aus. Es werden zwei Lose vergeben: Red Hat Enterprise Linux (RHEL) und Red Hat Ansible Automation Platform (AAP). Die Anbieter müssen juristische Personen mit Red Hat Premier tier Partner Status sein und entsprechende Nachweise erbringen.",
+    "project": {
+      "title_de": "Red Hat Subscription/Wartung und Support",
+      "customer": "Stadt Zürich, Organisation und Informatik (OIZ)",
+      "location": "Zürich",
+      "projectNumber": "17935",
+      "projectId": "dfd93b10-36aa-49f5-ae22-fa8da3c5624f",
+      "publicationDate": "2025-06-10",
+      "offerDeadline": "2025-07-21T12:00:00+02:00",
+      "contract_start": "2026-03-01",
+      "cpvCode": {
+        "code": "48000000",
+        "label_de": "Softwarepaket und Informationssysteme"
+      },
+      "qna_deadline": null
+    },
+    "team": "Engineering",
+    "apply_score": 6,
+    "missing_info": [
+      "Vertragsende",
+      "Budget",
+      "Ansprechperson für Rückfragen"
+    ]
+  },
+  {
+    "summary": "Die Stadt Biel plant die Auslagerung und Digitalisierung ihres physischen Baugesuchsarchivs inklusive Abholung, Verpackung, externer Archivierung und Digitalisierung der Baugesuchsakten. Es wird eine mehrjährige Vertragslaufzeit von 5 Jahren mit Verlängerungsoptionen geben, und die Digitalisierung on Demand muss innerhalb von zwei Arbeitstagen erfolgen.",
+    "project": {
+      "title_de": "Digitalisierung Baugesuche (Scanning und Archivierung)",
+      "customer": "Informatik und Logistik Stadt Biel",
+      "location": "Biel",
+      "projectNumber": "17146",
+      "projectId": "cc29b89e-ec64-4222-9f0d-c92a1641a7f0",
+      "publicationDate": "2025-06-09",
+      "offerDeadline": "2025-07-21T23:59:00+02:00",
+      "contract_start": "2025-10-01",
+      "qna_deadline": "2025-07-10",
+      "cpvCode": {
+        "code": "79999100",
+        "label_de": "Scanning"
+      }
+    },
+    "team": "Engineering",
+    "apply_score": 7,
+    "missing_info": [
+      "Vertragswert",
+      "Budget",
+      "Technische Anforderungen im Detail",
+      "Spezifische Anforderungen an Softwarelösungen"
+    ]
+  },
+  {
+    "summary": "Das Projekt \"Digitaler Schaden-Workflow\" der Gebäudeversicherung St.Gallen umfasst Lizenzen und Dienstleistungen zur Bereitstellung, Installation, Konfiguration, Wartung und Support einer Applikation zur digitalen Schadenbearbeitung. Die Projektleitung übernimmt die Gesamtverantwortung für Entwicklung und Integration in die bestehende IT-Landschaft.",
+    "project": {
+      "title_de": "Digitaler Schaden-Workflow",
+      "customer": "Gebäudeversicherung St.Gallen",
+      "location": "St. Gallen",
+      "projectNumber": "18132",
+      "projectId": "b8499723-46d7-4b47-9c50-ad70ef9b762c",
+      "publicationDate": "2025-06-07",
+      "offerDeadline": "2025-08-14T12:00:00+02:00",
+      "contract_start": "2025-10-01",
+      "cpvCode": {
+        "code": "72000000",
+        "label_de": "IT-Dienste: Beratung, Software-Entwicklung, Internet und Hilfestellung"
+      },
+      "qna_deadline": null
+    },
+    "team": "Engineering",
+    "apply_score": 8,
+    "missing_info": [
+      "Vertragswert",
+      "Budget",
+      "Ansprechpartner für Rückfragen",
+      "Detaillierte technische Anforderungen"
+    ]
+  }
+]

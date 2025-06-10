@@ -12,7 +12,7 @@ from simap_agent.enricher import enrich_batch
 from simap_agent.slack_client import post_message
 
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.DEBUG,
     format="%(asctime)s %(levelname)s:%(name)s:%(message)s",
 )
 logger = logging.getLogger(__name__)
