@@ -6,7 +6,7 @@ from typing import Any, Dict, List, Optional
 
 import requests
 
-from . import config
+from simap_agent import config
 
 logger = logging.getLogger(__name__)
 

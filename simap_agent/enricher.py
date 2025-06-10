@@ -4,7 +4,7 @@ from typing import Any, Dict, List
 
 from openai import OpenAI
 
-from . import config
+from simap_agent import config
 
 logger = logging.getLogger(__name__)
 

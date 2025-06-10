@@ -1,10 +1,10 @@
 import json
 import logging
 
-from . import config
-from .simap_client import fetch_project_summaries, fetch_project_details
-from .enricher import enrich_batch
-from .slack_client import post_message
+from simap_agent import config
+from simap_agent.simap_client import fetch_project_summaries, fetch_project_details
+from simap_agent.enricher import enrich_batch
+from simap_agent.slack_client import post_message
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
