@@ -87,7 +87,7 @@ def format_slack_blocks(proj: Dict[str, Any]) -> List[Dict[str, Any]]:
 
     award_as_pdf = str(proj.get("awardCriteriaAsPDF", "")).lower() == "yes" or proj.get("awardCriteriaAsPDF") is True
     if award_summary:
-        text += f"\n:trophy: *Zuschlagskriterien:*\n>{award_summary}\n"
+        text += f"\n:trophy: *Zuschlagskriterien:*\n{award_summary}\n"
     elif award:
         text += ":trophy: *Zuschlagskriterien:*"
         for a in award:
