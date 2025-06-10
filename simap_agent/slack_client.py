@@ -1,6 +1,6 @@
 import requests
 
-from . import config
+from simap_agent import config
 
 
 def post_message(text: str) -> None:
