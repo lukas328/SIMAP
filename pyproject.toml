@@ -1,0 +1,14 @@
+[project]
+name = "simap-agent"
+version = "0.1.0"
+description = "Fetch and enrich SIMAP tenders and post to Slack"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "python-dotenv",
+    "openai",
+    "requests",
+]
+
+[project.scripts]
+simap-agent = "simap_agent.main:main"
