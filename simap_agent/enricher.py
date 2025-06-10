@@ -1,0 +1,116 @@
+import json
+import logging
+from typing import Any, Dict, List
+
+from openai import OpenAI
+
+from . import config
+
+logger = logging.getLogger(__name__)
+
+openai_client = OpenAI(api_key=config.OPENAI_API_KEY)
+
+ENRICH_FUNC = [
+    {
+        "name": "enrich_project",
+        "description": (
+            "Analysiere ein SIMAP-Projekt, fasse es kurz zusammen, "
+            "extrahiere nur deutsche Werte, ordne es einem Team zu "
+            "(Products, Engineering, Data&AI), gib einen Apply-Score 1–10 "
+            "und liste fehlende Felder als MissingInfo auf."
+        ),
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "summary": {"type": "string"},
+                "project": {
+                    "type": "object",
+                    "properties": {
+                        "title_de": {"type": "string"},
+                        "customer": {"type": "string"},
+                        "location": {"type": "string"},
+                        "projectNumber": {"type": "string"},
+                        "projectId": {"type": "string"},
+                        "publicationDate": {"type": "string"},
+                        "offerDeadline": {"type": "string"},
+                        "contract_start": {"type": "string"},
+                        "qna_deadline": {"type": "string"},
+                        "cpvCode": {
+                            "type": "object",
+                            "properties": {
+                                "code": {"type": "string"},
+                                "label_de": {"type": "string"},
+                            },
+                            "required": ["code", "label_de"],
+                        },
+                    },
+                    "required": [
+                        "qna_deadline,title_de",
+                        "customer",
+                        "location",
+                        "projectId",
+                        "publicationDate",
+                        "offerDeadline",
+                        "contract_start",
+                        "cpvCode",
+                        "projectNumber",
+                    ],
+                },
+                "team": {"type": "string", "enum": ["Products", "Engineering", "Data&AI"]},
+                "apply_score": {"type": "integer"},
+                "missing_info": {"type": "array", "items": {"type": "string"}},
+            },
+            "required": ["summary", "project", "team", "apply_score", "missing_info"],
+        },
+    }
+]
+
+
+TARGET_KEYS = [
+    "title_de",
+    "customer",
+    "location",
+    "publicationDate",
+    "offerDeadline",
+    "contract_start",
+    "cpvCode",
+    "qna_deadline",
+    "projectId",
+]
+
+
+def enrich(detail: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
+    system_content = (
+        "Du bist RFP-Analyst fuer Mesoneer ag. Nutze nur deutsche Felder und analysiere wie folgt:\n"
+        "1. Zusammenfassung (2-3 Saetze)\n"
+        "2. Extrahiere relevante Felder\n"
+        "3. Teamzuordnung\n"
+        "4. Apply-Score 1-10\n"
+        "5. Liste fehlende Felder"
+    )
+    resp = openai_client.chat.completions.create(
+        model="gpt-4.1-mini",
+        messages=[
+            {"role": "system", "content": system_content},
+            {
+                "role": "user",
+                "content": "PROJECT_JSON =\n"
+                + json.dumps(detail, ensure_ascii=False, indent=2)
+                + "\n\nCOMPANY_PROFILE =\n"
+                + json.dumps(profile, ensure_ascii=False, indent=2),
+            },
+        ],
+        functions=ENRICH_FUNC,
+        function_call={"name": "enrich_project"},
+        temperature=0.2,
+    )
+    args = resp.choices[0].message.function_call.arguments
+    data = json.loads(args)
+    proj = data.get("project", {})
+    for k in TARGET_KEYS:
+        proj.setdefault(k, None)
+    return data
+
+
+def enrich_batch(details: List[Dict[str, Any]], profile: Dict[str, Any]) -> List[Dict[str, Any]]:
+    return [enrich(d, profile) for d in details]
