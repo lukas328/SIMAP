@@ -58,7 +58,8 @@ def format_slack_blocks(proj: Dict[str, Any]) -> List[Dict[str, Any]]:
     qual_summary = proj.get("qualificationCriteriaSummary")
     qual = proj.get("qualificationCriteria") or []
     qual_in_docs = str(proj.get("qualificationCriteriaInDocuments", "")).lower() == "yes" or proj.get("qualificationCriteriaInDocuments") is True
-    qual_as_pdf = proj.get("qualificationCriteriaAsPDF")
+
+    qual_as_pdf = str(proj.get("qualificationCriteriaAsPDF", "")).lower() == "yes" or proj.get("qualificationCriteriaAsPDF") is True
     if qual_summary:
         text += f"\n:bookmark_tabs: *Eignungskriterien:*\n{qual_summary}\n"
     elif qual:
@@ -72,18 +73,21 @@ def format_slack_blocks(proj: Dict[str, Any]) -> List[Dict[str, Any]]:
             if desc:
                 text += f" – {desc}"
         text += "\n"
-    elif qual_in_docs:
+
+    else:
         if qual_as_pdf:
             text += ":bookmark_tabs: Kriterien sind als pdf hinterlegt\n"
-        else:
+        elif qual_in_docs:
+
             text += ":bookmark_tabs: Kriterien sind in den Dokumenten hinterlegt\n"
 
     award_summary = proj.get("awardCriteriaSummary")
     award = proj.get("awardCriteria") or []
     award_in_docs = str(proj.get("awardCriteriaInDocuments", "")).lower() == "yes" or proj.get("awardCriteriaInDocuments") is True
-    award_as_pdf = proj.get("awardCriteriaAsPDF")
+
+    award_as_pdf = str(proj.get("awardCriteriaAsPDF", "")).lower() == "yes" or proj.get("awardCriteriaAsPDF") is True
     if award_summary:
-        text += f"\n:trophy: *Zuschlagskriterien:*\n{award_summary}\n"
+        text += f"\n:trophy: *Zuschlagskriterien:*\n>{award_summary}\n"
     elif award:
         text += ":trophy: *Zuschlagskriterien:*"
         for a in award:
@@ -95,10 +99,12 @@ def format_slack_blocks(proj: Dict[str, Any]) -> List[Dict[str, Any]]:
             if weight is not None:
                 text += f" – Gewichtung {weight}%"
         text += "\n"
-    elif award_in_docs:
+
+    else:
         if award_as_pdf:
             text += ":trophy: Kriterien sind als pdf hinterlegt\n"
-        else:
+        elif award_in_docs:
+
             text += ":trophy: Kriterien sind in den Dokumenten hinterlegt\n"
 
     blocks = [
