@@ -52,8 +52,10 @@ def format_slack_blocks(proj: Dict[str, Any]) -> List[Dict[str, Any]]:
         f"\n:page_facing_up: *Zusammenfassung:*\n>{summary}\n\n"
         f":calendar:   •   *Q&A:* {qa_dl}   •   *Frist:* {offer_dl}   •   *Start:* {start} \n"
         f"\n:pushpin: *CPV:* `{cpv_code}` – {cpv_label}\n"
-        f"\n:mag: *Fehlende Infos:* {missing_str}\n"
     )
+
+    if missing:
+        text += f"\n:mag: *Fehlende Infos:* {missing_str}\n"
 
     qual_summary = proj.get("qualificationCriteriaSummary")
     qual = proj.get("qualificationCriteria") or []

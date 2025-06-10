@@ -40,6 +40,29 @@ def test_format_slack_blocks_basic():
     section_text = next(b for b in blocks if b.get("type") == "section")["text"]["text"]
     assert "Projekt" in section_text
     assert "Engineering" in section_text
+    assert "Fehlende Infos" not in section_text
+
+
+def test_format_slack_blocks_missing_info():
+    proj = {
+        "team": "Engineering",
+        "project": {
+            "title_de": "Projekt",
+            "customer": "Kunde",
+            "projectNumber": "123",
+            "projectId": "abc",
+            "offerDeadline": "2024-12-31",
+            "contract_start": "2025-01-15",
+            "qna_deadline": "2024-12-01",
+            "cpvCode": {"code": "48000000", "label_de": "Software"},
+        },
+        "apply_score": 7,
+        "summary": "Kurzfassung",
+        "missing_info": ["Ort"],
+    }
+    blocks = slack_client.format_slack_blocks(proj)
+    section_text = next(b for b in blocks if b.get("type") == "section")["text"]["text"]
+    assert "Fehlende Infos" in section_text
 
 
 def test_enrich_missing_info(monkeypatch):
