@@ -23,7 +23,7 @@ def summarize_criteria(criteria: List[Dict[str, Any]], name: str) -> str:
         messages=[
             {
                 "role": "system",
-                "content": f"Fasse die folgenden {name} in kurzen Stichpunkten auf deutsch zusammen. Nicht mehr als 3-5",
+                "content": f"Fasse die folgenden {name} in kurzen Stichpunkten auf deutsch zusammen. Nicht mehr als 3-5 Sollten mehr nötig sein SChriebe in deiner Nachricht mit das weitere Infos auf SIMAP zu fidnen sind",
             },
             {"role": "user", "content": json.dumps(criteria, ensure_ascii=False, indent=2)},
         ],
