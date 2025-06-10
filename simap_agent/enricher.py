@@ -98,6 +98,17 @@ TARGET_KEYS = [
     "projectId",
 ]
 
+# Mapping of keys to human readable labels that should be
+# reported as missing information in Slack. Only these
+# entries are considered when building the "missing_info"
+# list.
+MISSING_INFO_FIELDS = {
+    "projectId": "ID",
+    "qna_deadline": "Q&A",
+    "qualificationCriteria": "Eignungskriterien",
+    "awardCriteria": "Zuschlagskriterien",
+}
+
 
 def enrich(detail: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
     system_content = (
@@ -160,6 +171,30 @@ def enrich(detail: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
     if award:
         data["awardCriteria"] = award
         data["awardCriteriaSummary"] = summarize_criteria(award, "Zuschlagskriterien")
+
+    # Build missing_info list only from fields we expect in Slack.
+    missing: List[str] = []
+    # project-level checks
+    if not proj.get("projectId"):
+        missing.append(MISSING_INFO_FIELDS["projectId"])
+    if not proj.get("qna_deadline"):
+        missing.append(MISSING_INFO_FIELDS["qna_deadline"])
+    # qualification criteria
+    if not (
+        data.get("qualificationCriteria")
+        or data.get("qualificationCriteriaInDocuments")
+        or data.get("qualificationCriteriaAsPDF")
+    ):
+        missing.append(MISSING_INFO_FIELDS["qualificationCriteria"])
+    # award criteria
+    if not (
+        data.get("awardCriteria")
+        or data.get("awardCriteriaInDocuments")
+        or data.get("awardCriteriaAsPDF")
+    ):
+        missing.append(MISSING_INFO_FIELDS["awardCriteria"])
+
+    data["missing_info"] = missing
 
     return data
 
