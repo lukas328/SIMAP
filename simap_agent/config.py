@@ -1,4 +1,5 @@
 import os
+import json
 import logging
 from dotenv import load_dotenv
 
@@ -12,7 +13,17 @@ SIMAP_SEARCH_ENDPOINT = os.getenv("SIMAP_SEARCH_ENDPOINT", "/api/publications/v2
 SIMAP_DETAIL_ENDPOINT_TEMPLATE = os.getenv("SIMAP_DETAIL_ENDPOINT_TEMPLATE", "/api/publications/v1/project/{projectId}/publication-details/{publicationId}")
 SLACK_WEBHOOK_URL = os.getenv("SLACK_WEBHOOK_URL")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+COMPANY_PROFILE_FILE = os.getenv("COMPANY_PROFILE_FILE", "company_profile.json")
+CPV_CODES = os.getenv("CPV_CODES", "48000000,72000000").split(",")
 logger.debug("Slack webhook configured: %s", bool(SLACK_WEBHOOK_URL))
+
+try:
+    with open(COMPANY_PROFILE_FILE, "r", encoding="utf-8") as f:
+        COMPANY_PROFILE = json.load(f)
+    logger.debug("Company profile loaded from %s", COMPANY_PROFILE_FILE)
+except FileNotFoundError:
+    logger.warning("Company profile file %s not found", COMPANY_PROFILE_FILE)
+    COMPANY_PROFILE = {}
 
 # Validate required variables
 _required = {

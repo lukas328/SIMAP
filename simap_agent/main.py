@@ -17,44 +17,8 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-COMPANY_PROFILE = {
-    "name": "Mesoneer GmbH",
-    "domains": [
-        "Identifikationssoftware",
-        "Engineering (Workflow-Automation, RPA, Data Processing, Data-Plattform-Lösungen)",
-        "AI & Data (Data Governance, Data Strategy, AI-Anwendungen)",
-    ],
-    "expertise": [
-        "Process automatisation",
-        "Data Streaming",
-        "Data Plattforms",
-        "Workflow Engines",
-        "IDP",
-        "RPA",
-        "Cloud",
-        "AI And GenAI",
-        "Data Engineering",
-        "Data Governance and Strategy",
-        "Identification Software",
-        "Kyc & Onboarding solutions",
-    ],
-    "technologies": [
-        "BPMN 2.0",
-        "Camunda BPM",
-        "Axon Ivy",
-        "Flowable",
-        "Apache Kafka",
-        "UiPath",
-        "Microsoft Power Automate",
-        "Apache",
-        "Azure",
-        "Python",
-        "JAVA",
-    ],
-    "max_contract_value_eur": 1000_000,
-}
-
-VALID_CPV = ["48000000", "72000000"]
+COMPANY_PROFILE = config.COMPANY_PROFILE
+VALID_CPV = config.CPV_CODES
 
 
 def main() -> None:
