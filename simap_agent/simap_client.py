@@ -57,10 +57,16 @@ def fetch_project_details(summaries: List[Dict[str, Any]]) -> List[Dict[str, Any
     logger.info("Fetching details for %d projects", len(summaries))
     details: List[Dict[str, Any]] = []
     for s in summaries:
+        pub_type = (s.get("pubType") or "").lower()
+        if pub_type not in ("tender", "advance_notice"):
+            logger.debug("Skipping project %s with pubType %s", s.get("id"), pub_type)
+            continue
+
         pid = s.get("id")
         pub = s.get("publicationId")
         if not pid or not pub:
             continue
+
         logger.debug("Fetching detail for project %s", pid)
         endpoint = config.SIMAP_DETAIL_ENDPOINT_TEMPLATE.format(projectId=pid, publicationId=pub)
         data = call(endpoint)
@@ -69,5 +75,6 @@ def fetch_project_details(summaries: List[Dict[str, Any]]) -> List[Dict[str, Any
         else:
             logger.warning("No detail returned for project %s", pid)
         time.sleep(0.5)
+
     logger.info("Fetched details for %d/%d projects", len(details), len(summaries))
-    return [d for d in details if d.get("pubType", "").lower() in ("tender", "advance_notice")]
+    return details
