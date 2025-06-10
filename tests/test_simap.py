@@ -10,9 +10,12 @@ import importlib
 # Ensure required env vars for config
 os.environ.setdefault("SLACK_WEBHOOK_URL", "http://example.com")
 os.environ.setdefault("OPENAI_API_KEY", "dummy")
+os.environ.setdefault("APPLY_SCORE_THRESHOLD", "7")
 
 import simap_agent.config as config
 importlib.reload(config)
+
+import simap_agent.main as main
 
 import simap_agent.slack_client as slack_client
 import simap_agent.simap_client as simap_client
@@ -166,4 +169,32 @@ def test_fetch_project_details_filters(monkeypatch):
     )
     assert called == [exp1, exp2]
     assert result == [{"endpoint": exp1}, {"endpoint": exp2}]
+
+
+def test_main_filters_apply_score(monkeypatch):
+    calls = []
+
+    monkeypatch.setattr(main, "fetch_project_summaries", lambda cpv=None: ["s"])
+    monkeypatch.setattr(
+        main,
+        "fetch_project_details",
+        lambda summaries: [
+            {"projectNumber": "1"},
+            {"projectNumber": "2"},
+        ],
+    )
+    monkeypatch.setattr(
+        main,
+        "enrich_batch",
+        lambda details, profile: [
+            {"apply_score": 6, "project": {"projectNumber": "1"}},
+            {"apply_score": 8, "project": {"projectNumber": "2"}},
+        ],
+    )
+    monkeypatch.setattr(main, "format_slack_blocks", lambda data: [])
+    monkeypatch.setattr(main, "post_blocks", lambda blocks: calls.append(blocks))
+
+    main.main()
+
+    assert len(calls) == 1
 

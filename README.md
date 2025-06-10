@@ -10,9 +10,10 @@ pip install -r requirements.txt
 ## Konfiguration
 `.env`-Datei beinhaltet folgende Variablen :
 
-- `SLACK_WEBHOOK_URL` – URL des Slack Incoming Webhooks
-- `OPENAI_API_KEY` – API-Schlüssel für OpenAI
-- Optional: `SIMAP_BASE_URL`, `SIMAP_SEARCH_ENDPOINT`, `SIMAP_DETAIL_ENDPOINT_TEMPLATE`, `COMPANY_PROFILE_FILE`, `CPV_CODES`
+- `SLACK_WEBHOOK_URL` – Slack Incoming Webhook
+- `OPENAI_API_KEY` – OpenAI API key
+- Optional: `SIMAP_BASE_URL`, `SIMAP_SEARCH_ENDPOINT`, `SIMAP_DETAIL_ENDPOINT_TEMPLATE`, `COMPANY_PROFILE_FILE`, `CPV_CODES`, `APPLY_SCORE_THRESHOLD`
+
 
 ## Nutzung
 ```bash
