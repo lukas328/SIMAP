@@ -8,7 +8,7 @@ pip install -r requirements.txt
 ```
 
 ## Konfiguration
-Legen Sie eine `.env`-Datei an (siehe `.gitignore`) und fügen Sie folgende Variablen ein:
+`.env`-Datei beinhaltet folgende Variablen :
 
 - `SLACK_WEBHOOK_URL` – URL des Slack Incoming Webhooks
 - `OPENAI_API_KEY` – API-Schlüssel für OpenAI
@@ -21,10 +21,10 @@ python -m simap_agent
 Das Skript ruft aktuelle Projekte ab, nutzt OpenAI zur Anreicherung und postet die Ergebnisse in Slack. Die angereicherten Daten werden ebenfalls in `enriched_projects.json` geschrieben.
 
 ## Deployment
-Das Projekt läuft in einer Azure Function, die nach einem festen Zeitplan ausgeführt wird. Die genaue Umgebung und der Name der Function App werden intern gepflegt und müssen hier eingetragen werden:
+Das Projekt läuft in einer Azure Function, die nach einem täglich um 7:00 nach einen festen Zeitplan ausgeführt wird:
 
 ```
 <AZURE_FUNCTION_APP_NAME_PLACEHOLDER>
 ```
 
-Bitte stellen Sie sicher, dass die Umgebungsvariablen auch in der Azure Function konfiguriert sind.
+Die Umgebungsvariablen sind ebenfalls in Azure Function konfiguriert.
