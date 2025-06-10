@@ -60,7 +60,7 @@ def format_slack_blocks(proj: Dict[str, Any]) -> List[Dict[str, Any]]:
     qual_in_docs = str(proj.get("qualificationCriteriaInDocuments", "")).lower() == "yes" or proj.get("qualificationCriteriaInDocuments") is True
     qual_as_pdf = proj.get("qualificationCriteriaAsPDF")
     if qual_summary:
-        text += f"\n:bookmark_tabs: *Eignungskriterien:*\n>{qual_summary}\n"
+        text += f"\n:bookmark_tabs: *Eignungskriterien:*\n{qual_summary}\n"
     elif qual:
         text += ":bookmark_tabs: *Eignungskriterien:*"
         for c in qual:
@@ -83,7 +83,7 @@ def format_slack_blocks(proj: Dict[str, Any]) -> List[Dict[str, Any]]:
     award_in_docs = str(proj.get("awardCriteriaInDocuments", "")).lower() == "yes" or proj.get("awardCriteriaInDocuments") is True
     award_as_pdf = proj.get("awardCriteriaAsPDF")
     if award_summary:
-        text += f"\n:trophy: *Zuschlagskriterien:*\n>{award_summary}\n"
+        text += f"\n:trophy: *Zuschlagskriterien:*\n{award_summary}\n"
     elif award:
         text += ":trophy: *Zuschlagskriterien:*"
         for a in award:
