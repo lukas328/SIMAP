@@ -1,3 +1,5 @@
+"""Functions that call OpenAI to enrich SIMAP project data."""
+
 import json
 import logging
 from typing import Any, Dict, List
@@ -111,6 +113,7 @@ MISSING_INFO_FIELDS = {
 
 
 def enrich(detail: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
+    """Enrich a single project using OpenAI."""
     system_content = (
         "Du bist RFP-Analyst fuer Mesoneer ag. Nutze nur deutsche Felder und analysiere wie folgt:\n"
         "1. Zusammenfassung (2-3 Saetze)\n"
@@ -244,6 +247,7 @@ def enrich(detail: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def enrich_batch(details: List[Dict[str, Any]], profile: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """Run :func:`enrich` for a list of project details."""
     results = []
     for d in details:
         logger.info("Enriching project %s", d.get("id"))

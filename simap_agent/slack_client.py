@@ -1,3 +1,5 @@
+"""Utility functions for posting formatted messages to Slack."""
+
 import logging
 from datetime import datetime
 from typing import Any, Dict, List
