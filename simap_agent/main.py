@@ -51,7 +51,7 @@ COMPANY_PROFILE = {
         "Python",
         "JAVA",
     ],
-    "max_contract_value_eur": 500_000,
+    "max_contract_value_eur": 1000_000,
 }
 
 VALID_CPV = ["48000000", "72000000"]

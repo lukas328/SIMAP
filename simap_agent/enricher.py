@@ -21,7 +21,7 @@ def summarize_criteria(criteria: List[Dict[str, Any]], name: str) -> str:
         messages=[
             {
                 "role": "system",
-                "content": f"Fasse die folgenden {name} in 5 Stichpunkten auf deutsch zusammen.",
+                "content": f"Fasse die folgenden {name} in Stichpunkten auf deutsch zusammen.",
             },
             {"role": "user", "content": json.dumps(criteria, ensure_ascii=False, indent=2)},
         ],
@@ -35,7 +35,7 @@ ENRICH_FUNC = [
         "description": (
             "Analysiere ein SIMAP-Projekt, fasse es kurz zusammen, "
             "extrahiere nur deutsche Werte, ordne es einem Team zu "
-            "(Products, Engineering, Data&AI), gib einen Apply-Score 1–10 "
+            "(Products, Engineering, Data&AI), gib einen Apply-Score 1–10 wie sehr das Projekt aus basis unserer Skills zu uns passen würde (1 garnicht - 10 wir sind ein fit) "
             "und liste fehlende Felder als MissingInfo auf."
         ),
         "parameters": {
