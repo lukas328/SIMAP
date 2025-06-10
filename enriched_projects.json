@@ -1,6 +1,6 @@
 [
   {
-    "summary": "Die Stadt Zürich, Organisation und Informatik (OIZ), schreibt eine offene Ausschreibung für Red Hat Subscriptions inklusive Wartung und Support aus. Es werden zwei Lose vergeben: Red Hat Enterprise Linux (RHEL) und Red Hat Ansible Automation Platform (AAP). Die Anbieter müssen juristische Personen mit Red Hat Premier tier Partner Status sein und entsprechende Nachweise erbringen.",
+    "summary": "Die Stadt Zürich, Organisation und Informatik (OIZ), schreibt eine Beschaffung von Red Hat-Subscriptions inklusive Wartung und Support für Red Hat Enterprise Linux (RHEL) und Red Hat Ansible Automation Platform (AAP) aus. Die Ausschreibung ist in deutscher Sprache und erfolgt über die Online-Plattform DecisionAdvisor. Es können Angebote für ein oder beide Lose eingereicht werden, wobei die Vergabe pro Los an nur eine Anbieterin erfolgen kann.",
     "project": {
       "title_de": "Red Hat Subscription/Wartung und Support",
       "customer": "Stadt Zürich, Organisation und Informatik (OIZ)",
@@ -10,24 +10,408 @@
       "publicationDate": "2025-06-10",
       "offerDeadline": "2025-07-21T12:00:00+02:00",
       "contract_start": "2026-03-01",
+      "qna_deadline": "2025-06-19",
       "cpvCode": {
         "code": "48000000",
         "label_de": "Softwarepaket und Informationssysteme"
-      },
-      "qna_deadline": null
+      }
     },
     "team": "Engineering",
     "apply_score": 6,
     "missing_info": [
-      "Vertragsende",
-      "Budget",
-      "Ansprechperson für Rückfragen"
-    ]
+      "Vertragslaufzeit-Ende",
+      "Vertragswert",
+      "Ansprechpartner für Rückfragen"
+    ],
+    "qualificationCriteria": [
+      {
+        "id": "75d6b4a3-a10c-42dc-8e77-08cb8b91790b",
+        "description": {
+          "de": "<p>Als Anbietende werden nur juristische Personen zugelassen.</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "title": {
+          "de": "Juristische Person",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "verification": {
+          "de": "<p>Upload des Dokuments Selbstdeklaration/Unternehmensprofil über die Ausschreibungsplattform DecisionAdvisor, siehe Ausschreibungsunterlagen</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        }
+      },
+      {
+        "id": "c8270686-6f76-4687-b594-ea4c39b07782",
+        "description": {
+          "de": "<p>Die Anbieterin verfügt über den Red Hat Premier tier Partner Status und muss diesen Status nachweisen können.</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "title": {
+          "de": "Zertifikate",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "verification": {
+          "de": "<p>Upload des Zertifikats über die Ausschreibungsplattform DecisionAdvisor, siehe Ausschreibungsunterlagen</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        }
+      },
+      {
+        "id": "21926dd0-b2f3-4d23-ac0b-d6b2bf325e23",
+        "description": {
+          "de": "<p>Die Anbieterin ist eine fachkompetente Dienstleisterin im Bereich der ausgeschriebenen Leistungen.</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "title": {
+          "de": "Fachkompetente Dienstleisterin",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "verification": null
+      },
+      {
+        "id": "192722a6-75ec-4ed2-8eee-72ec3f0d1e01",
+        "description": {
+          "de": "<p>Die ausgeschriebenen und offerierten Leistungen gehören zum Kerngeschäft der Anbieterin.</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "title": {
+          "de": "Kerngeschäft der Anbieterin",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "verification": null
+      },
+      {
+        "id": "686592d4-09cd-4df3-9ddd-242c827d1464",
+        "description": {
+          "de": "<p>Nachweis bezüglich Erfahrung der Anbieterin mit den offerierten Leistungen in vergleichbarer Grössenordnung und Komplexität in den letzten fünf Jahren.</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "title": {
+          "de": "Erfahrung der Anbieterin",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "verification": {
+          "de": "<p>Upload der Referenzen über die Ausschreibungsplattform DecisionAdvisor, siehe Ausschreibungsunterlagen</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        }
+      },
+      {
+        "id": "8c6f8522-fb75-468f-a427-8b4b7a4cbe55",
+        "description": {
+          "de": "<p>Die Anbieterin kann mindestens drei vergleichbare Referenzen, bevorzugt aus Organisationen in der Schweiz und aus den letzten fünf Jahren, in vergleichbarem Umfang nachweisen.</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "title": {
+          "de": "Referenzen",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "verification": {
+          "de": "<p>Upload der Referenzen über die Ausschreibungsplattform DecisionAdvisor, siehe Ausschreibungsunterlagen</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        }
+      },
+      {
+        "id": "c2507d20-732d-4665-85b3-9e00fd70ed1c",
+        "description": {
+          "de": "<p>Nachweis einer ausreichenden Kapazität für eine sach- und zeitgerechte Ausführung der ausgeschriebenen Leistungen.</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "title": {
+          "de": "Kapazität",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "verification": null
+      },
+      {
+        "id": "85a7fe58-f456-47fb-8b8d-1c9c529220a6",
+        "description": {
+          "de": "<p>Als Anbietende werden nur juristische Personen zugelassen.</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "title": {
+          "de": "Juristische Person",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "verification": {
+          "de": "<p>Upload des Dokuments Selbstdeklaration/Unternehmensprofil über die Ausschreibungsplattform DecisionAdvisor, siehe Ausschreibungsunterlagen</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        }
+      },
+      {
+        "id": "593d780a-f8f4-4d5f-b333-66e473d09a4b",
+        "description": {
+          "de": "<p>Die Anbieterin verfügt über den Red Hat Premier tier Partner Status und muss diesen Status nachweisen können.</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "title": {
+          "de": "Zertifikate",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "verification": {
+          "de": "<p>Upload des Zertifikats über die Ausschreibungsplattform DecisionAdvisor, siehe Ausschreibungsunterlagen</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        }
+      },
+      {
+        "id": "93052c84-5120-40c9-b29a-35715a70d3f9",
+        "description": {
+          "de": "<p>Die Anbieterin ist eine fachkompetente Dienstleisterin im Bereich der ausgeschriebenen Leistungen.</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "title": {
+          "de": "Fachkompetente Dienstleisterin",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "verification": null
+      },
+      {
+        "id": "553487a6-fb64-4acc-b860-ef4e8bde60c5",
+        "description": {
+          "de": "<p>Die ausgeschriebenen und offerierten Leistungen gehören zum Kerngeschäft der Anbieterin.</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "title": {
+          "de": "Kerngeschäft der Anbieterin",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "verification": null
+      },
+      {
+        "id": "33c3b8e7-81c7-4b55-979c-1f635f0ba897",
+        "description": {
+          "de": "<p>Nachweis bezüglich Erfahrung der Anbieterin mit den offerierten Leistungen in vergleichbarer Grössenordnung und Komplexität in den letzten fünf Jahren.</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "title": {
+          "de": "Erfahrung der Anbieterin",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "verification": {
+          "de": "<p>Upload der Referenzen über die Ausschreibungsplattform DecisionAdvisor, siehe Ausschreibungsunterlagen</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        }
+      },
+      {
+        "id": "94049362-1070-4115-b46a-92184d93cda1",
+        "description": {
+          "de": "<p>Die Anbieterin kann mindestens drei vergleichbare Referenzen, bevorzugt aus Organisationen in der Schweiz und aus den letzten fünf Jahren, in vergleichbarem Umfang nachweisen.</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "title": {
+          "de": "Referenzen",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "verification": {
+          "de": "<p>Upload der Referenzen über die Ausschreibungsplattform DecisionAdvisor, siehe Ausschreibungsunterlagen</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        }
+      },
+      {
+        "id": "6b71fa78-b246-4829-a992-8778cbb1306d",
+        "description": {
+          "de": "<p>Nachweis einer ausreichenden Kapazität für eine sach- und zeitgerechte Ausführung der ausgeschriebenen Leistungen.</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "title": {
+          "de": "Kapazität",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "verification": null
+      }
+    ],
+    "qualificationCriteriaSummary": "- Zulassung nur für juristische Personen (Nachweis durch Selbstdeklaration/Unternehmensprofil).\n- Nachweis des Red Hat Premier tier Partner Status (Upload des Zertifikats).\n- Fachkompetenz im Bereich der ausgeschriebenen Leistungen.\n- Die angebotenen Leistungen müssen zum Kerngeschäft der Anbieterin gehören.\n- Nachweis von Erfahrung und mindestens drei vergleichbaren Referenzen aus den letzten fünf Jahren (bevorzugt aus der Schweiz) sowie ausreichende Kapazität für die Ausführung der Leistungen.",
+    "awardCriteria": [
+      {
+        "id": "9217315d-03b4-4e6f-b062-ebf3a5bd8fe3",
+        "description": {
+          "de": "<p>Gemäss Ausschreibungsunterlagen</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "title": {
+          "de": "Kosten der angebotenen Leistungen",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "isPriceCriterion": true,
+        "verification": null,
+        "weighting": 50,
+        "maxPoints": null
+      },
+      {
+        "id": "71d0d64e-1a9d-4454-9f7c-bca4b39f6821",
+        "description": {
+          "de": "<p>Gemäss Ausschreibungsunterlagen</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "title": {
+          "de": "Qualität des Angebots",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "isPriceCriterion": false,
+        "verification": null,
+        "weighting": 30,
+        "maxPoints": null
+      },
+      {
+        "id": "16b67a49-4b54-4fa2-8a73-709e2e70571e",
+        "description": {
+          "de": "<p>Gemäss Ausschreibungsunterlagen</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "title": {
+          "de": "Erfüllungsgrad des Angebots",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "isPriceCriterion": false,
+        "verification": null,
+        "weighting": 20,
+        "maxPoints": null
+      },
+      {
+        "id": "1f86d085-21a4-4bd2-b96e-ba8f84360353",
+        "description": {
+          "de": "<p>Gemäss Ausschreibungsunterlagen</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "title": {
+          "de": "Kosten der angebotenen Leistungen",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "isPriceCriterion": true,
+        "verification": null,
+        "weighting": 50,
+        "maxPoints": null
+      },
+      {
+        "id": "fc68caf6-136d-48f9-95d7-af6310274dc0",
+        "description": {
+          "de": "<p>Gemäss Ausschreibungsunterlagen</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "title": {
+          "de": "Qualität des Angebots",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "isPriceCriterion": false,
+        "verification": null,
+        "weighting": 30,
+        "maxPoints": null
+      },
+      {
+        "id": "076eace8-4ac6-4b27-af05-4f2f1f9d49b2",
+        "description": {
+          "de": "<p>Gemäss Ausschreibungsunterlagen</p>",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "title": {
+          "de": "Erfüllungsgrad des Angebots",
+          "en": null,
+          "fr": null,
+          "it": null
+        },
+        "isPriceCriterion": false,
+        "verification": null,
+        "weighting": 20,
+        "maxPoints": null
+      }
+    ],
+    "awardCriteriaSummary": "- Kosten der angebotenen Leistungen (Gewichtung: 50%)\n- Qualität des Angebots (Gewichtung: 30%)\n- Erfüllungsgrad des Angebots (Gewichtung: 20%)\n- Alle Kriterien basieren auf den Ausschreibungsunterlagen\n- Die Kriterien sind mehrfach aufgeführt, jedoch mit gleichen Beschreibungen und Gewichtungen"
   },
   {
-    "summary": "Die Stadt Biel plant die Auslagerung und Digitalisierung ihres physischen Baugesuchsarchivs inklusive Abholung, Verpackung, externer Archivierung und Digitalisierung der Baugesuchsakten. Es wird eine mehrjährige Vertragslaufzeit von 5 Jahren mit Verlängerungsoptionen geben, und die Digitalisierung on Demand muss innerhalb von zwei Arbeitstagen erfolgen.",
+    "summary": "Die Stadt Biel plant die Auslagerung und Digitalisierung ihres physischen Baugesuchsarchivs inklusive Abholung, Verpackung, externer Archivierung und Digitalisierung der Baugesuchsakten. Der Vertrag läuft vom 01.10.2025 bis 30.09.2030 mit der Möglichkeit der Verlängerung bis maximal 30.09.2034. Die Ausschreibung erfolgt offen und die Angebotsabgabe ist bis zum 21.07.2025 möglich.",
     "project": {
-      "title_de": "Digitalisierung Baugesuche (Scanning und Archivierung)",
+      "title_de": "Digitalisierung Baugesuche (Scanning und Archivierung) ",
       "customer": "Informatik und Logistik Stadt Biel",
       "location": "Biel",
       "projectNumber": "17146",
@@ -44,14 +428,13 @@
     "team": "Engineering",
     "apply_score": 7,
     "missing_info": [
-      "Vertragswert",
-      "Budget",
-      "Technische Anforderungen im Detail",
-      "Spezifische Anforderungen an Softwarelösungen"
+      "Vertragswert / Budget",
+      "Detaillierte technische Anforderungen",
+      "Spezifische Anforderungen an die Digitalisierungstechnologie"
     ]
   },
   {
-    "summary": "Das Projekt \"Digitaler Schaden-Workflow\" der Gebäudeversicherung St.Gallen umfasst Lizenzen und Dienstleistungen zur Bereitstellung, Installation, Konfiguration, Wartung und Support einer Applikation zur digitalen Schadenbearbeitung. Die Projektleitung übernimmt die Gesamtverantwortung für Entwicklung und Integration in die bestehende IT-Landschaft.",
+    "summary": "Das Projekt \"Digitaler Schaden-Workflow\" der Gebäudeversicherung St.Gallen umfasst die Bereitstellung von Lizenzen und einmaligen Dienstleistungen für einen digitalen Schaden-Workflow inklusive Installation, Konfiguration, Wartung und Support. Die Anbieterin übernimmt die Gesamtverantwortung für Entwicklung, Integration und Projektleitung innerhalb der bestehenden IT-Landschaft.",
     "project": {
       "title_de": "Digitaler Schaden-Workflow",
       "customer": "Gebäudeversicherung St.Gallen",
@@ -61,19 +444,18 @@
       "publicationDate": "2025-06-07",
       "offerDeadline": "2025-08-14T12:00:00+02:00",
       "contract_start": "2025-10-01",
+      "qna_deadline": "2025-06-19",
       "cpvCode": {
         "code": "72000000",
         "label_de": "IT-Dienste: Beratung, Software-Entwicklung, Internet und Hilfestellung"
-      },
-      "qna_deadline": null
+      }
     },
     "team": "Engineering",
     "apply_score": 8,
     "missing_info": [
-      "Vertragswert",
-      "Budget",
-      "Ansprechpartner für Rückfragen",
-      "Detaillierte technische Anforderungen"
+      "Angebotswert oder Budget",
+      "Detaillierte Anforderungen an die Technologie",
+      "Informationen zu bisherigen Anbietern oder Referenzen"
     ]
   }
 ]
