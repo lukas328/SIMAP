@@ -19,3 +19,12 @@ Create a `.env` file (see `.gitignore`) with the following variables:
 python -m simap_agent
 ```
 The script will fetch recent projects, enrich them using OpenAI and post formatted messages to Slack. Enriched data is also written to `enriched_projects.json`.
+
+## Azure Functions
+The repository includes a simple timer-triggered Azure Function under `azure_function/simap_timer`.
+To deploy:
+1. Install the [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local) and the Azure CLI.
+2. Run `func azure functionapp publish <APP_NAME>` from the repository root to deploy.
+3. Configure the required environment variables (`SLACK_WEBHOOK_URL`, `OPENAI_API_KEY`, ...)
+   in the Function App settings.
+The schedule can be adjusted in `azure_function/simap_timer/function.json`.

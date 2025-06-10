@@ -8,6 +8,7 @@ dependencies = [
     "python-dotenv",
     "openai",
     "requests",
+    "azure-functions",
 ]
 
 [project.scripts]
