@@ -64,8 +64,35 @@ def main() -> None:
             f":star: *Apply Score:* *{score}*\n\n"
             f":page_facing_up: *Zusammenfassung:*\n>{summary}\n\n"
             f":pushpin: *CPV:* `{(det.get('base') or {}).get('cpvCode', {}).get('code')}`\n"
-            "––––––––––––––––––––––––––––––––––––––––––––––––––"
         )
+
+        qual = enrich_data.get("qualificationCriteria") or []
+        if qual:
+            text += ":bookmark_tabs: *Eignungskriterien:*"
+            for c in qual:
+                title = (c.get("title") or {}).get("de")
+                if not title:
+                    continue
+                desc = (c.get("description") or {}).get("de") or ""
+                text += f"\n• *{title}*"
+                if desc:
+                    text += f" – {desc}"
+            text += "\n\n"
+
+        award = enrich_data.get("awardCriteria") or []
+        if award:
+            text += ":trophy: *Zuschlagskriterien:*"
+            for a in award:
+                title = (a.get("title") or {}).get("de")
+                if not title:
+                    continue
+                weight = a.get("weighting")
+                text += f"\n• *{title}*"
+                if weight is not None:
+                    text += f" – Gewichtung {weight}%"
+            text += "\n"
+
+        text += "––––––––––––––––––––––––––––––––––––––––––––––––––"
         print(text)
         #post_message(text)
 

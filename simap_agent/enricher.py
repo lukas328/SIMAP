@@ -109,6 +109,16 @@ def enrich(detail: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
     proj = data.get("project", {})
     for k in TARGET_KEYS:
         proj.setdefault(k, None)
+
+    # Pass through qualification and award criteria if present in the detail
+    qual = detail.get("qualificationCriteria") or []
+    if qual:
+        data["qualificationCriteria"] = qual
+
+    award = detail.get("awardCriteria") or []
+    if award:
+        data["awardCriteria"] = award
+
     return data
 
 
