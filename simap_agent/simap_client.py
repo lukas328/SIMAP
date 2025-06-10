@@ -1,3 +1,5 @@
+"""Client helpers for retrieving project data from SIMAP."""
+
 import json
 import logging
 import time
@@ -12,6 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 def call(endpoint: str, params: Optional[Dict[str, Any]] = None) -> Optional[Dict[str, Any]]:
+    """Perform a GET request against the SIMAP API."""
     url = f"{config.SIMAP_BASE_URL}{endpoint}"
     logger.debug("Requesting %s with params %s", url, params)
     try:
@@ -27,6 +30,7 @@ def call(endpoint: str, params: Optional[Dict[str, Any]] = None) -> Optional[Dic
 
 
 def fetch_project_summaries(cpv: List[str], lang: str = "de", max_pages: int = 100) -> List[Dict[str, Any]]:
+    """Return recent project summaries filtered by CPV codes."""
     logger.info("Fetching project summaries")
     summaries: List[Dict[str, Any]] = []
     cursor = None
@@ -54,6 +58,7 @@ def fetch_project_summaries(cpv: List[str], lang: str = "de", max_pages: int = 1
 
 
 def fetch_project_details(summaries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Fetch detail information for the given project summaries."""
     logger.info("Fetching details for %d projects", len(summaries))
     details: List[Dict[str, Any]] = []
     for s in summaries:

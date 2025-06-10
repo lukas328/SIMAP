@@ -1,3 +1,5 @@
+"""Basic tests for the SIMAP agent functions."""
+
 import os
 import json
 import sys

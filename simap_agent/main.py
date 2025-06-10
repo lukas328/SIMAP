@@ -1,3 +1,5 @@
+"""Entry point for running the SIMAP pipeline."""
+
 import json
 import logging
 import os
@@ -22,6 +24,7 @@ VALID_CPV = config.CPV_CODES
 
 
 def main() -> None:
+    """Fetch recent projects, enrich them and post to Slack."""
     logger.info("Starting SIMAP pipeline")
     logger.debug("Slack webhook configured: %s", bool(config.SLACK_WEBHOOK_URL))
 
