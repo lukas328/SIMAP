@@ -143,13 +143,30 @@ def enrich(detail: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
     for k in TARGET_KEYS:
         proj.setdefault(k, None)
 
-    # Collect qualification and award criteria from top level or lots
-    qual = detail.get("qualificationCriteria") or []
+    # Collect qualification and award criteria from top level, lots or criteria block
+    criteria_block = detail.get("criteria") or {}
+
+    qual = detail.get("qualificationCriteria") or criteria_block.get("qualificationCriteria") or []
     if not qual:
         for lot in detail.get("lots", []):
-            qual.extend(lot.get("qualificationCriteria") or [])
+            lot_criteria = lot.get("criteria") or {}
+            qual.extend(lot.get("qualificationCriteria") or lot_criteria.get("qualificationCriteria") or [])
+
     qual_in_docs = detail.get("qualificationCriteriaInDocuments")
+    if qual_in_docs is None:
+        qual_in_docs = criteria_block.get("qualificationCriteriaInDocuments")
+
     qual_as_pdf = detail.get("qualificationCriteriaAsPDF")
+    if qual_as_pdf is None:
+        qual_as_pdf = criteria_block.get("qualificationCriteriaAsPDF")
+
+    qual_sel = criteria_block.get("qualificationCriteriaSelection")
+    if qual_sel == "criteria_in_documents":
+        qual_in_docs = True
+    elif qual_sel == "criteria_as_pdf":
+        qual_as_pdf = True
+
+    qual_note = criteria_block.get("qualificationCriteriaNote") or detail.get("qualificationCriteriaNote")
     if qual_in_docs is not None:
         data["qualificationCriteriaInDocuments"] = qual_in_docs
     if qual_as_pdf is not None:
@@ -157,13 +174,33 @@ def enrich(detail: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
     if qual:
         data["qualificationCriteria"] = qual
         data["qualificationCriteriaSummary"] = summarize_criteria(qual, "Eignungskriterien")
+    elif qual_note:
+        # use German note as summary if present
+        summary = (qual_note.get("de") or "").strip()
+        if summary:
+            data["qualificationCriteriaSummary"] = summary
 
-    award = detail.get("awardCriteria") or []
+    award = detail.get("awardCriteria") or criteria_block.get("awardCriteria") or []
     if not award:
         for lot in detail.get("lots", []):
-            award.extend(lot.get("awardCriteria") or [])
+            lot_criteria = lot.get("criteria") or {}
+            award.extend(lot.get("awardCriteria") or lot_criteria.get("awardCriteria") or [])
+
     award_in_docs = detail.get("awardCriteriaInDocuments")
+    if award_in_docs is None:
+        award_in_docs = criteria_block.get("awardCriteriaInDocuments")
+
     award_as_pdf = detail.get("awardCriteriaAsPDF")
+    if award_as_pdf is None:
+        award_as_pdf = criteria_block.get("awardCriteriaAsPDF")
+
+    award_sel = criteria_block.get("awardCriteriaSelection")
+    if award_sel == "criteria_in_documents":
+        award_in_docs = True
+    elif award_sel == "criteria_as_pdf":
+        award_as_pdf = True
+
+    award_note = criteria_block.get("awardCriteriaNote") or detail.get("awardCriteriaNote")
     if award_in_docs is not None:
         data["awardCriteriaInDocuments"] = award_in_docs
     if award_as_pdf is not None:
@@ -171,6 +208,10 @@ def enrich(detail: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
     if award:
         data["awardCriteria"] = award
         data["awardCriteriaSummary"] = summarize_criteria(award, "Zuschlagskriterien")
+    elif award_note:
+        summary = (award_note.get("de") or "").strip()
+        if summary:
+            data["awardCriteriaSummary"] = summary
 
 
     # Build missing_info list only from fields we expect in Slack.
@@ -185,6 +226,7 @@ def enrich(detail: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
         data.get("qualificationCriteria")
         or data.get("qualificationCriteriaInDocuments")
         or data.get("qualificationCriteriaAsPDF")
+        or data.get("qualificationCriteriaSummary")
     ):
         missing.append(MISSING_INFO_FIELDS["qualificationCriteria"])
     # award criteria
@@ -192,6 +234,7 @@ def enrich(detail: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
         data.get("awardCriteria")
         or data.get("awardCriteriaInDocuments")
         or data.get("awardCriteriaAsPDF")
+        or data.get("awardCriteriaSummary")
     ):
         missing.append(MISSING_INFO_FIELDS["awardCriteria"])
 
