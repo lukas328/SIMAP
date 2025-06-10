@@ -101,7 +101,13 @@ def format_slack_blocks(proj: Dict[str, Any]) -> List[Dict[str, Any]]:
 def post_blocks(blocks: List[Dict[str, Any]]) -> None:
     """Send Slack message blocks."""
     logger.debug("Sending Slack blocks")
-    payload = {"blocks": blocks}
+    # Extract fallback text for clients that do not support blocks.
+    fallback = ""
+    for block in blocks:
+        if block.get("type") == "section" and block.get("text"):
+            fallback = block["text"].get("text", "")
+            break
+    payload = {"text": fallback[:150], "blocks": blocks}
     response = requests.post(
         config.SLACK_WEBHOOK_URL,
         json=payload,
