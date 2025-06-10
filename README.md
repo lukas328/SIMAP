@@ -12,7 +12,7 @@ Create a `.env` file (see `.gitignore`) with the following variables:
 
 - `SLACK_WEBHOOK_URL` – Slack Incoming Webhook
 - `OPENAI_API_KEY` – OpenAI API key
-- Optional: `SIMAP_BASE_URL`, `SIMAP_SEARCH_ENDPOINT`, `SIMAP_DETAIL_ENDPOINT_TEMPLATE`, `COMPANY_PROFILE_FILE`, `CPV_CODES`
+- Optional: `SIMAP_BASE_URL`, `SIMAP_SEARCH_ENDPOINT`, `SIMAP_DETAIL_ENDPOINT_TEMPLATE`, `COMPANY_PROFILE_FILE`, `CPV_CODES`, `APPLY_SCORE_THRESHOLD`
 
 ## Usage
 ```bash

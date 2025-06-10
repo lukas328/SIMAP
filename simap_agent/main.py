@@ -37,6 +37,14 @@ def main() -> None:
     logger.info("Enriching projects via OpenAI")
     enriched = enrich_batch(details, COMPANY_PROFILE)
     for det, enrich_data in zip(details, enriched):
+        score = enrich_data.get("apply_score", 0)
+        if score < config.APPLY_SCORE_THRESHOLD:
+            logger.info(
+                "Skipping project #%s due to low score %s",
+                det.get("projectNumber"),
+                score,
+            )
+            continue
         logger.info("Posting project #%s to Slack", det.get("projectNumber"))
         blocks = format_slack_blocks(enrich_data)
         logger.debug("Slack blocks: %s", blocks)

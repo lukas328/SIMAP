@@ -23,6 +23,8 @@ SLACK_WEBHOOK_URL = os.getenv("SLACK_WEBHOOK_URL")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 COMPANY_PROFILE_FILE = os.getenv("COMPANY_PROFILE_FILE", "company_profile.json")
 CPV_CODES = os.getenv("CPV_CODES", "48000000,72000000").split(",")
+# Minimum apply score required for posting a project to Slack
+APPLY_SCORE_THRESHOLD = int(os.getenv("APPLY_SCORE_THRESHOLD", "7"))
 logger.debug("Slack webhook configured: %s", bool(SLACK_WEBHOOK_URL))
 
 try:
