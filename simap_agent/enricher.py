@@ -45,7 +45,8 @@ ENRICH_FUNC = [
                         },
                     },
                     "required": [
-                        "qna_deadline,title_de",
+                        "qna_deadline",
+                        "title_de",
                         "customer",
                         "location",
                         "projectId",
@@ -112,12 +113,18 @@ def enrich(detail: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
     for k in TARGET_KEYS:
         proj.setdefault(k, None)
 
-    # Pass through qualification and award criteria if present in the detail
+    # Collect qualification and award criteria from top level or lots
     qual = detail.get("qualificationCriteria") or []
+    if not qual:
+        for lot in detail.get("lots", []):
+            qual.extend(lot.get("qualificationCriteria") or [])
     if qual:
         data["qualificationCriteria"] = qual
 
     award = detail.get("awardCriteria") or []
+    if not award:
+        for lot in detail.get("lots", []):
+            award.extend(lot.get("awardCriteria") or [])
     if award:
         data["awardCriteria"] = award
 

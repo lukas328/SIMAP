@@ -82,6 +82,16 @@ def main() -> None:
             f":pushpin: *CPV:* `{(det.get('base') or {}).get('cpvCode', {}).get('code')}`\n"
         )
 
+        proj = enrich_data.get("project", {})
+        if proj.get("projectId"):
+            text += f":id: *Project ID:* {proj['projectId']}\n"
+        if proj.get("publicationDate"):
+            text += f":spiral_calendar_pad: *Publikation:* {proj['publicationDate']}\n"
+        if proj.get("offerDeadline"):
+            text += f":hourglass_flowing_sand: *Angebotsfrist:* {proj['offerDeadline']}\n"
+        if proj.get("contract_start"):
+            text += f":date: *Vertragsbeginn:* {proj['contract_start']}\n"
+
         qual = enrich_data.get("qualificationCriteria") or []
         if qual:
             text += ":bookmark_tabs: *Eignungskriterien:*"
