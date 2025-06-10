@@ -11,7 +11,10 @@ from simap_agent.simap_client import fetch_project_summaries, fetch_project_deta
 from simap_agent.enricher import enrich_batch
 from simap_agent.slack_client import post_message
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s: %(message)s")
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s:%(name)s:%(message)s",
+)
 logger = logging.getLogger(__name__)
 
 COMPANY_PROFILE = {
@@ -55,8 +58,16 @@ VALID_CPV = ["48000000", "72000000"]
 
 
 def main() -> None:
+    logger.info("Starting SIMAP pipeline")
+    logger.debug("Slack webhook configured: %s", bool(config.SLACK_WEBHOOK_URL))
+
     summaries = fetch_project_summaries(cpv=VALID_CPV)
+    logger.debug("Fetched %d summaries", len(summaries))
+
     details = fetch_project_details(summaries)
+    logger.debug("Fetched %d project details", len(details))
+
+    logger.info("Enriching projects via OpenAI")
     enriched = enrich_batch(details, COMPANY_PROFILE)
     for det, enrich_data in zip(details, enriched):
         title = det.get("project-info", {}).get("title", {}).get("de") or det.get("project-info", {}).get("title", {}).get("fr", "–")
@@ -99,10 +110,17 @@ def main() -> None:
 
         text += "––––––––––––––––––––––––––––––––––––––––––––––––––"
         logger.info(text)
-        #post_message(text)
+        logger.info("Posting project #%s to Slack", det.get("projectNumber"))
+        try:
+            post_message(text)
+            logger.info("Slack post succeeded")
+        except Exception:
+            logger.exception("Failed to post message to Slack")
 
+    logger.info("Writing enriched data to enriched_projects.json")
     with open("enriched_projects.json", "w", encoding="utf-8") as f:
         json.dump(enriched, f, ensure_ascii=False, indent=2)
+    logger.info("Run completed")
 
 
 if __name__ == "__main__":

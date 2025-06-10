@@ -13,8 +13,10 @@ logger = logging.getLogger(__name__)
 
 def call(endpoint: str, params: Optional[Dict[str, Any]] = None) -> Optional[Dict[str, Any]]:
     url = f"{config.SIMAP_BASE_URL}{endpoint}"
+    logger.debug("Requesting %s with params %s", url, params)
     try:
         resp = requests.get(url, params=params, timeout=10)
+        logger.debug("Response status: %s", resp.status_code)
         resp.raise_for_status()
         return resp.json()
     except requests.RequestException as exc:
@@ -25,6 +27,7 @@ def call(endpoint: str, params: Optional[Dict[str, Any]] = None) -> Optional[Dic
 
 
 def fetch_project_summaries(cpv: List[str], lang: str = "de", max_pages: int = 100) -> List[Dict[str, Any]]:
+    logger.info("Fetching project summaries")
     summaries: List[Dict[str, Any]] = []
     cursor = None
     for _ in range(max_pages):
@@ -36,6 +39,7 @@ def fetch_project_summaries(cpv: List[str], lang: str = "de", max_pages: int = 1
         }
         if cursor:
             params["lastItem"] = cursor
+        logger.debug("Calling summary search page with cursor %s", cursor)
         data = call(config.SIMAP_SEARCH_ENDPOINT, params)
         if not data or "projects" not in data:
             break
@@ -50,16 +54,20 @@ def fetch_project_summaries(cpv: List[str], lang: str = "de", max_pages: int = 1
 
 
 def fetch_project_details(summaries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    logger.info("Fetching details for %d projects", len(summaries))
     details: List[Dict[str, Any]] = []
     for s in summaries:
         pid = s.get("id")
         pub = s.get("publicationId")
         if not pid or not pub:
             continue
+        logger.debug("Fetching detail for project %s", pid)
         endpoint = config.SIMAP_DETAIL_ENDPOINT_TEMPLATE.format(projectId=pid, publicationId=pub)
         data = call(endpoint)
         if data:
             details.append(data)
+        else:
+            logger.warning("No detail returned for project %s", pid)
         time.sleep(0.5)
     logger.info("Fetched details for %d/%d projects", len(details), len(summaries))
     return [d for d in details if d.get("pubType", "").lower() in ("tender", "advance_notice")]

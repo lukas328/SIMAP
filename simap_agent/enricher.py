@@ -88,6 +88,7 @@ def enrich(detail: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
         "4. Apply-Score 1-10\n"
         "5. Liste fehlende Felder"
     )
+    logger.debug("Calling OpenAI for project %s", detail.get("id"))
     resp = openai_client.chat.completions.create(
         model="gpt-4.1-mini",
         messages=[
@@ -105,6 +106,7 @@ def enrich(detail: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
         temperature=0.2,
     )
     args = resp.choices[0].message.function_call.arguments
+    logger.debug("OpenAI response received for project %s", detail.get("id"))
     data = json.loads(args)
     proj = data.get("project", {})
     for k in TARGET_KEYS:
@@ -123,4 +125,8 @@ def enrich(detail: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def enrich_batch(details: List[Dict[str, Any]], profile: Dict[str, Any]) -> List[Dict[str, Any]]:
-    return [enrich(d, profile) for d in details]
+    results = []
+    for d in details:
+        logger.info("Enriching project %s", d.get("id"))
+        results.append(enrich(d, profile))
+    return results
