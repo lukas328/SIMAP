@@ -1,30 +1,30 @@
 # SIMAP Agent
 
-This tool fetches project tenders from [SIMAP](https://simap.ch), enriches them via OpenAI and posts the results to Slack.
+Dieses Projekt automatisiert das Abrufen und Aufbereiten von Ausschreibungen aus [SIMAP](https://simap.ch). Die Daten werden mit Hilfe von OpenAI angereichert und anschliessend als formatierte Nachrichten an Slack gesendet.
 
 ## Installation
 ```bash
 pip install -r requirements.txt
 ```
 
-## Configuration
-Create a `.env` file (see `.gitignore`) with the following variables:
+## Konfiguration
+Legen Sie eine `.env`-Datei an (siehe `.gitignore`) und fügen Sie folgende Variablen ein:
 
-- `SLACK_WEBHOOK_URL` – Slack Incoming Webhook
-- `OPENAI_API_KEY` – OpenAI API key
+- `SLACK_WEBHOOK_URL` – URL des Slack Incoming Webhooks
+- `OPENAI_API_KEY` – API-Schlüssel für OpenAI
 - Optional: `SIMAP_BASE_URL`, `SIMAP_SEARCH_ENDPOINT`, `SIMAP_DETAIL_ENDPOINT_TEMPLATE`, `COMPANY_PROFILE_FILE`, `CPV_CODES`
 
-## Usage
+## Nutzung
 ```bash
 python -m simap_agent
 ```
-The script will fetch recent projects, enrich them using OpenAI and post formatted messages to Slack. Enriched data is also written to `enriched_projects.json`.
+Das Skript ruft aktuelle Projekte ab, nutzt OpenAI zur Anreicherung und postet die Ergebnisse in Slack. Die angereicherten Daten werden ebenfalls in `enriched_projects.json` geschrieben.
 
-## Azure Functions
-The repository includes a simple timer-triggered Azure Function under `azure_function/simap_timer`.
-To deploy:
-1. Install the [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local) and the Azure CLI.
-2. Run `func azure functionapp publish <APP_NAME>` from the repository root to deploy.
-3. Configure the required environment variables (`SLACK_WEBHOOK_URL`, `OPENAI_API_KEY`, ...)
-   in the Function App settings.
-The schedule can be adjusted in `azure_function/simap_timer/function.json`.
+## Deployment
+Das Projekt läuft in einer Azure Function, die nach einem festen Zeitplan ausgeführt wird. Die genaue Umgebung und der Name der Function App werden intern gepflegt und müssen hier eingetragen werden:
+
+```
+<AZURE_FUNCTION_APP_NAME_PLACEHOLDER>
+```
+
+Bitte stellen Sie sicher, dass die Umgebungsvariablen auch in der Azure Function konfiguriert sind.
