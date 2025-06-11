@@ -4,13 +4,17 @@ import json
 import logging
 from typing import Any, Dict, List
 
-from openai import OpenAI
+from openai import AzureOpenAI
 
 from simap_agent import config
 
 logger = logging.getLogger(__name__)
 
-openai_client = OpenAI(api_key=config.OPENAI_API_KEY)
+openai_client = AzureOpenAI(
+    api_key=config.OPENAI_API_KEY,
+    azure_endpoint=config.AZURE_OPENAI_ENDPOINT,
+    api_version=config.OPENAI_API_VERSION,
+)
 
 
 def summarize_criteria(criteria: List[Dict[str, Any]], name: str) -> str:
