@@ -3,4 +3,3 @@ __pycache__/
 .pytest_cache/
 *.ipynb
 enriched_projects.json
-.vscode/
