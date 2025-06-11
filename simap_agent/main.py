@@ -54,9 +54,9 @@ def main() -> None:
         except Exception:
             logger.exception("Failed to post message to Slack")
 
-    logger.info("Writing enriched data to enriched_projects.json")
-    with open("enriched_projects.json", "w", encoding="utf-8") as f:
-        json.dump(enriched, f, ensure_ascii=False, indent=2)
+#    logger.info("Writing enriched data to enriched_projects.json")
+#    with open("enriched_projects.json", "w", encoding="utf-8") as f:
+#        json.dump(enriched, f, ensure_ascii=False, indent=2)
     logger.info("Run completed")
 
 
