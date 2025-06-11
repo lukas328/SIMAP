@@ -1,17 +1,17 @@
 {
 	"version": "2.0.0",
 	"tasks": [
-		{
-			"type": "func",
-			"label": "func: host start",
-			"command": "host start",
-			"problemMatcher": "$func-python-watch",
-			"isBackground": true,
-			"dependsOn": "pip install (functions)",
-			"options": {
-				"cwd": "${workspaceFolder}/azure_function"
-			}
-		},
+                {
+                        "type": "func",
+                        "label": "func: host start",
+                        "command": "host start",
+                        "problemMatcher": "$func-python-watch",
+                        "isBackground": true,
+                        "dependsOn": "pip install (functions)",
+                        "options": {
+                                "cwd": "${workspaceFolder}"
+                        }
+                },
 		{
 			"label": "pip install (functions)",
 			"type": "shell",
@@ -25,9 +25,10 @@
 				"command": "${config:azureFunctions.pythonVenv}/bin/python -m pip install -r requirements.txt"
 			},
 			"problemMatcher": [],
-			"options": {
-				"cwd": "${workspaceFolder}/azure_function"
-			}
-		}
-	]
+                        "options": {
+                                "cwd": "${workspaceFolder}"
+                        }
+                }
+        ]
 }
+
