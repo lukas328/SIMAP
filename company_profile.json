@@ -1,9 +1,9 @@
 {
-  "name": "Mesoneer Ag",
+  "name": "mesoneer Ag",
   "domains": [
-    "Identifikationssoftware, (Onboarding Banking, KYC, Identification)",
-    "Engineering (Workflow-Automation, RPA, Data Processing, Data-Plattform-Lösungen)",
-    "AI & Data (Data Governance, Data Strategy, AI-Anwendungen)"
+    "Identifikationssoftware, (Onboarding Banking, KYC, Identification, Signatur Lösungen)",
+    "Engineering (Workflow-Automation, RPA, Data Processing, Data-Plattform-Lösungen, Data Enngieering)",
+    "AI & Data (Data Governance, Data Strategy, AI-Anwendungen, Analytics,Data Architecture)"
   ],
   "expertise": [
     "Process automatisation",
@@ -17,8 +17,17 @@
     "Data Engineering",
     "Data Governance and Strategy",
     "Identification Software",
-    "Kyc & Onboarding solutions"
+    "Kyc & Onboarding solutions",
+    "Signatur" ,
+    "Identifikation",
+    "Elektronische Signatur",
+    "Signaturplattform",
+    "Digitales Unterschreibe",
+    "Data Analytics",
+    "Machine Learning",
+    "Data Processing"
   ],
+
   "technologies": [
     "BPMN 2.0",
     "Camunda BPM",
@@ -30,7 +39,9 @@
     "Apache",
     "Azure",
     "Python",
-    "JAVA"
+    "JAVA",
+    "Google",
+    "AWS"
   ],
   "max_contract_value_eur": 1000000
 }
