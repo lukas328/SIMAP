@@ -26,6 +26,7 @@ AZURE_OPENAI_ENDPOINT = os.getenv(
     "https://dataai-opai-openai-weu-001.cognitiveservices.azure.com/",
 )
 
+
 OPENAI_API_VERSION = os.getenv("OPENAI_API_VERSION", "2025-01-01-preview")
 COMPANY_PROFILE_FILE = os.getenv("COMPANY_PROFILE_FILE", "company_profile.json")
 CPV_CODES = os.getenv("CPV_CODES", "48000000,72000000").split(",")
