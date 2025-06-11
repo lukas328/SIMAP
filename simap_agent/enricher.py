@@ -23,7 +23,7 @@ def summarize_criteria(criteria: List[Dict[str, Any]], name: str) -> str:
         return ""
     logger.debug("Summarizing %s via OpenAI", name)
     resp = openai_client.chat.completions.create(
-        model="gpt-4.1-mini",
+        model="o4-mini",
         messages=[
             {
                 "role": "system",
@@ -128,7 +128,7 @@ def enrich(detail: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
     )
     logger.debug("Calling OpenAI for project %s", detail.get("id"))
     resp = openai_client.chat.completions.create(
-        model="gpt-4.1-mini",
+        model="o4-mini",
         messages=[
             {"role": "system", "content": system_content},
             {
