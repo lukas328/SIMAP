@@ -10,6 +10,11 @@ import importlib
 # Ensure required env vars for config
 os.environ.setdefault("SLACK_WEBHOOK_URL", "http://example.com")
 os.environ.setdefault("OPENAI_API_KEY", "dummy")
+os.environ.setdefault(
+    "AZURE_OPENAI_ENDPOINT",
+    "https://dataai-opai-openai-weu-001.cognitiveservices.azure.com/",
+)
+os.environ.setdefault("OPENAI_API_VERSION", "2025-01-01-preview")
 os.environ.setdefault("APPLY_SCORE_THRESHOLD", "7")
 
 import simap_agent.config as config
