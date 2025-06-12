@@ -127,7 +127,7 @@ def enrich(detail: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
         "1. Zusammenfassung (2-3 Saetze)\n"
         "2. Extrahiere relevante Felder\n"
         "3. Teamzuordnung\n"
-        "4. Apply-Score 1-10\n"
+        "4. Apply-Score 1-10 - (Wie interessant wäre die Bewerbung vin Aus 1 nicht relevant, 10 Sehr sehr guter Fit für uns)\n"
         "5. Liste fehlende Felder"
     )
     logger.debug("Calling OpenAI for project %s", detail.get("id"))
