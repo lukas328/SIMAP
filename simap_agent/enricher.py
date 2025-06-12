@@ -27,10 +27,10 @@ def summarize_criteria(criteria: List[Dict[str, Any]], name: str) -> str:
         messages=[
             {
                 "role": "system",
-                "content": f"""Fasse die folgenden {name} in kurzen Stichpunkten auf deutsch zusammen. Nicht mehr als 3-5 Zeilen Insgesamt benutzen nutzen, 
+                "content": f"""Fasse die folgenden {name} in kurzen Stichpunkten auf deutsch zusammen. 
                 Eignungskriterien und Zuschlagskriterien sollte in jeweils weniger als 300 Zeichen zusammengefasst werden.
                 Verwende kein Markdown oder HTML, sondern nur reinen Text.
-                Sollten mehr Infos nötig sein Schreibe in deiner Nachricht mit das Kriterien auf SIMAP zu finden sind"""
+                Sollten mehr Infos nötig sein Schreibe in deiner Nachricht am Ende das weitere Kriterien auf SIMAP zu finden sind"""
             },
             {"role": "user", "content": json.dumps(criteria, ensure_ascii=False, indent=2)},
         ],
