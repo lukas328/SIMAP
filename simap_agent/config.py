@@ -7,7 +7,13 @@ from dotenv import load_dotenv
 
 logger = logging.getLogger(__name__)
 
-load_dotenv(override=True)
+# Lade .env-Datei nur für die lokale Entwicklung
+# Die Variable 'FUNCTIONS_WORKER_RUNTIME' ist in Azure Functions standardmässig gesetzt.
+if not os.getenv("FUNCTIONS_WORKER_RUNTIME"):
+    from dotenv import load_dotenv
+    load_dotenv(override=True)
+    logging.debug("Environment variables loaded from .env file for local development.")
+    
 logger.debug("Environment variables loaded")
 
 # Base URL and endpoints for SIMAP
