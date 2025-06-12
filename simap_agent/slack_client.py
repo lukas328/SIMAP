@@ -80,10 +80,10 @@ def format_slack_blocks(proj: Dict[str, Any]) -> List[Dict[str, Any]]:
 
     else:
         if qual_as_pdf:
-            text += ":bookmark_tabs: Kriterien sind als pdf hinterlegt\n"
+            text += ":bookmark_tabs: *Eignungskriterien:*\n Kriterien sind als pdf hinterlegt\n"
         elif qual_in_docs:
 
-            text += ":bookmark_tabs: Kriterien sind in den Dokumenten hinterlegt\n"
+            text += ":bookmark_tabs: *Eignungskriterien:*\n Kriterien sind in den Dokumenten hinterlegt\n"
 
     award_summary = proj.get("awardCriteriaSummary")
     award = proj.get("awardCriteria") or []
@@ -106,10 +106,10 @@ def format_slack_blocks(proj: Dict[str, Any]) -> List[Dict[str, Any]]:
 
     else:
         if award_as_pdf:
-            text += ":trophy: Kriterien sind als pdf hinterlegt\n"
+            text += ":trophy: *Zuschlagskriterien:*\n Kriterien sind als pdf hinterlegt\n"
         elif award_in_docs:
 
-            text += ":trophy: Kriterien sind in den Dokumenten hinterlegt\n"
+            text += ":trophy: *Zuschlagskriterien:*\n Kriterien sind in den Dokumenten hinterlegt\n"
 
     blocks = [
         {"type": "divider"},

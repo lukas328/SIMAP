@@ -31,7 +31,7 @@ def summarize_criteria(criteria: List[Dict[str, Any]], name: str) -> str:
                 Eignungskriterien und Zuschlagskriterien sollte in jeweils weniger als 300 Zeichen zusammengefasst werden.
                 Mache es so kurz wie möglich, sodsas es ein erste Überblick gewährt wird fasse es gerne sinnhaft zusammen.
                 Verwende KEIN Markdown oder HTML, sondern nur reinen Text es kann ansonten leider nicht angezeigt werden.
-                Sollten mehr Infos nötig sein Schreibe in deiner Nachricht am Ende (Jeweils einmal am Ende der Eignungskriterien oder am Ende der Zuschlagskriterein jenachdem was zutrifft und wo mehr Infos vorhanden sind) das weitere Kriterien auf SIMAP zu finden sind"""
+                Sollten mehr Infos nötig sein Schreibe in deiner Nachricht  (Jeweils  bei dem Eignungskriterien oder am beim der Zuschlagskriterein jenachdem was zutrifft oder beides) das weitere Kriterien auf SIMAP zu finden sind"""
             },
             {"role": "user", "content": json.dumps(criteria, ensure_ascii=False, indent=2)},
         ],
